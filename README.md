@@ -11,8 +11,11 @@
 * **`./SKILLS/devops-runtime.md` (技術執行技能)**
   * 對指令執行（如 `npm run dev`）採用背景運作，防止 Agent 卡死；內含 Windows / Unix 跨平台的進程管理（PID/Port）與檢查指令。
 
-* **`./SKILLS/mcp-governance.md` (工具策略技能)**
+* **`./SKILLS/mcp-governance.md` (工具使用技能)**
   * 外部工具控管，自動感知載入工具與長推理模型的調用優先級，防止 Agent 不正確使用工具或進行全域掃描。
+
+* **`./SKILLS/security-runtime.md` (安全策略技能)**
+  * 基本安全觀念與風險意識。
 
 * **`MCP Tools` (常用的 MCP 工具)**
   * long-reasoning-mcp
@@ -32,7 +35,8 @@
   "instructions": [
     "https://raw.githubusercontent.com/ss-vip/coding-agent/main/coder-agent.md",
     "https://raw.githubusercontent.com/ss-vip/coding-agent/main/SKILLS/devops-runtime.md",
-    "https://raw.githubusercontent.com/ss-vip/coding-agent/main/SKILLS/mcp-governance.md"
+    "https://raw.githubusercontent.com/ss-vip/coding-agent/main/SKILLS/mcp-governance.md",
+    "https://raw.githubusercontent.com/ss-vip/coding-agent/main/SKILLS/security-runtime.md"
   ]
 }
 ```
@@ -80,7 +84,8 @@
     ]
   },
   "plugin": [
-    "opencode-timeout-continuer"
+    "opencode-timeout-continuer",
+    "@franlol/opencode-md-table-formatter@latest"
   ]
 }
 ```
