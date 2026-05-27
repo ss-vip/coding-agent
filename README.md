@@ -1,11 +1,11 @@
-# OpenCode AI Agent Configuration (Resilience Loop)
+# Coding AI Agent Configuration (Resilience Loop)
 
 ## `[自用]` 對 OpenCode AI Agent 制定的設定檔。
 
 ### 檔案結構與說明
 
 * **`coder-agent.md` (核心角色)**
-  * 自主迭代的 agent workflow：Observe → Scope → Execute → Verify。
+  * 自主迭代的 agent workflow：Plan → Act → Reflect。
   * Agent 於需要時自動建立 `./temp/` 與 runtime state 檔案，用於隔離暫存與測試 artifacts。
 
 * **`./SKILLS/devops-runtime.md` (技術執行技能)**
@@ -18,9 +18,12 @@
   * 基本安全觀念與風險意識。
 
 * **`MCP Tools` (常用的 MCP 工具)**
-  * long-reasoning-mcp
-  * @modelcontextprotocol/server-memory
-  * duckduckgo-mcp-server
+  * [long-reasoning-mcp](https://github.com/harshpreet931/longReasoningMCP)
+  * [@modelcontextprotocol/server-memory](https://www.npmjs.com/package/@modelcontextprotocol/server-memory)
+  * [duckduckgo-mcp-server](https://github.com/nickclyde/duckduckgo-mcp-server)
+
+* **`skills` (全域常用的技能)**
+  * [code-review](https://github.com/awesome-skills/code-review-skill)
 
 ---
 
