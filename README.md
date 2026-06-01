@@ -22,9 +22,9 @@
 
 * **`MCP Tools` (常用 MCP 工具)**
   * [long-reasoning-mcp](https://github.com/harshpreet931/longReasoningMCP)
-  * [@modelcontextprotocol/server-memory](https://www.npmjs.com/package/@modelcontextprotocol/server-memory)
+  * [neuromcp](https://github.com/AdelElo13/neuromcp)
+  * [exa-multi-mcp](https://libraries.io/npm/exa-multi-mcp)
   * [duckduckgo-mcp-server](https://github.com/nickclyde/duckduckgo-mcp-server)
-
 
 * **其他 MCP 工具**
   * [scrapling](https://github.com/D4Vinci/Scrapling)
