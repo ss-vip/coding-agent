@@ -4,33 +4,22 @@
 
 ### 檔案結構與說明
 
-* **`coder-agent.md` (核心角色)**
-  * 自主迭代的 agent workflow：Plan → Act → Reflect。
-  * Agent 於需要時自動建立 `./temp/` 與 runtime state 檔案，用於隔離暫存與測試 artifacts。
-
-* **`./SKILLS/devops-runtime.md` (技術執行技能)**
-  * 對指令執行（如 `npm run dev`）採用背景運作，防止 Agent 卡死；內含 Windows / Unix 跨平台的進程管理（PID/Port）與檢查指令。
-
-* **`./SKILLS/fullstack.md` (前後端整合技能)**
-  * 前端：Framework-aware（框架與套件優先或 fallback 至 Vanilla）、排版與創意設計思考。後端：RESTful API、參數化查詢、安全錯誤處理、Schema 驗證。
-
-* **`./SKILLS/mcp-governance.md` (工具使用技能)**
-  * 外部工具控管，自動感知載入工具與長推理模型的調用優先級，防止 Agent 不正確使用工具或進行全域掃描。
-
-* **`./SKILLS/security-runtime.md` (安全策略技能)**
-  * 信任邊界、提示注入防禦、外部資料驗證，防止 Agent 執行隱藏指令或權限提升。
+* **`coder-agent.md` (核心 + 全部政策)**
+  * 含 10 個核心章節，全面涵蓋語言治理、系統模型、Vibe/Production 雙模式、行為護欄、工具信任、安全防禦、DevOps 防卡死、全端架構、MCP 治理與回應格式。
+  * 自主迭代工作流 Plan → Act → Reflect（規劃、執行、反思）的 Resilience Loop 彈性閉環。
+  * Agent 在執行任務時，會自動建立 ./temp/ 目錄與執行期狀態檔（Runtime States），確保所有暫存檔案、腳本與測試產物（Artifacts）與主專案嚴格隔離。
 
 * **`MCP Tools` (常用 MCP 工具)**
-  * [long-reasoning-mcp](https://github.com/harshpreet931/longReasoningMCP)
-  * [neuromcp](https://github.com/AdelElo13/neuromcp)
+  * [pluggedin](https://github.com/VeriTeknik/pluggedin-plugin)
   * [exa-multi-mcp](https://libraries.io/npm/exa-multi-mcp)
-  * [duckduckgo-mcp-server](https://github.com/nickclyde/duckduckgo-mcp-server)
 
 * **其他 MCP 工具**
   * [scrapling](https://github.com/D4Vinci/Scrapling)
   * [cloak-browser-mcp](https://npmx.dev/package/@devinwangd/cloak-browser-mcp)
+  * [duckduckgo-mcp-server](https://github.com/nickclyde/duckduckgo-mcp-server)
+  * [mcp-web-search](https://github.com/tickernelz/mcp-web-search)
 
-* **`skills` (全域常用的技能)**
+* **外部 Skills 連結 (參考)**
   * [code-review](https://github.com/awesome-skills/code-review-skill)
 
 ---
@@ -44,11 +33,7 @@
   "$schema": "https://opencode.ai/config.json",
 
   "instructions": [
-    "https://raw.githubusercontent.com/ss-vip/coding-agent/main/coder-agent.md",
-    "https://raw.githubusercontent.com/ss-vip/coding-agent/main/SKILLS/devops-runtime.md",
-    "https://raw.githubusercontent.com/ss-vip/coding-agent/main/SKILLS/fullstack.md",
-    "https://raw.githubusercontent.com/ss-vip/coding-agent/main/SKILLS/mcp-governance.md",
-    "https://raw.githubusercontent.com/ss-vip/coding-agent/main/SKILLS/security-runtime.md"
+    "https://raw.githubusercontent.com/ss-vip/coding-agent/main/coder-agent.md"
   ]
 }
 ```
