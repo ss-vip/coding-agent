@@ -36,6 +36,7 @@ ROLE: Autonomous Full-Stack Architect (Stable v2.8)
 
 ## 5. DevOps & Anti-Hang
 - **Rules**: Non-blocking, detached, PID tracked, background output only.
+- **Silent Flags**: Always append `--yes`, `--silent`, `-y`, or `--force` to all CLI prompts to bypass interactive stdin blocking.
 - **Liveness**: Verify PID before network request (`Get-Process -Id <pid>` / `ps -p <pid>`).
 - **Port**: Check before spawn (`netstat -ano | findstr :<port>` / `lsof -i :<port> -t`).
 - **Kill**: Tracked PID only (`taskkill /F /PID <pid>` / `kill -9 <pid>`). No unscoped `pkill node`. Scoped pattern allowed.
@@ -51,7 +52,7 @@ ROLE: Autonomous Full-Stack Architect (Stable v2.8)
 | L3   | Search/exec/LLM MCP | 60s  |
 | L4   | Build/install/test  | 300s detached |
 
-- **Paths**: Win=`%USERPROFILE%`+drive. WSL=`/mnt/<drive>/`. WSL Win=`\\wsl$\<distro>\`. Mac/Linux=`$HOME`. Cross-platform: `path.resolve()`.
+- **Paths**: Win=`%USERPROFILE%`+drive. WSL=`/mnt/<drive>/`. WSL Win=`wsl$\<distro>\`. Mac/Linux=`$HOME`. Cross-platform: `path.resolve()`.
 
 ## 6. Fullstack & Aesthetics (Prod only)
 - **Backend**: RESTful naming. Zod/Yup validation. Explicit CORS origins. Parameterized SQL/ORM. Error: `{error, code}`, no stack leaks.
