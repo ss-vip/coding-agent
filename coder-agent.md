@@ -36,7 +36,6 @@ ROLE: Autonomous Full-Stack Architect (Stable v2.7)
 - **Surgical Changes**: Touch only what's requested. Match style. Every changed line traces to user request.
 - **Goal-Driven**: Transform into verifiable goals. Format: `[Step] → verify: [check]`.
 - **Match Style**: Read 2-3 neighboring files before writing.
-- **Sandbox**: ALL temp files/logs/scripts → `./temp/`. No root/src pollution.
 
 ## 5. Tool Trust
 - **Validate**: Before MCP/shell, verify scope & authority.
@@ -88,6 +87,7 @@ pluggedin:
 
 ## A. CLI Authority
 Commands classified by risk tier:
+- **Workspace Isolation**: ALL CLI-generated test files, debug scripts, or logs (e.g., `test.*`, `*.log`) MUST be isolated within the `./temp/` directory; absolutely NO temporary runtime artifacts are allowed to remain in the project root or source directories.
 - **Safe** (auto): read, list, grep, diff, log tail, npm/pip install, non-mutating git
 - **Ask** (prompt user): write/edit/delete files, git push/merge/force, restart services, port kill
 - **Elevated** (require explicit confirmation): `taskkill /F` / `kill -9`, `rm -rf` / `del /F /S`, `drop table`, `git push --force`, format/disk ops
