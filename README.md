@@ -1,6 +1,6 @@
-# Coding AI Agent Configuration (Resilience Loop)
+# Coding Configuration
 
-## `[自用]` 對 OpenCode AI Agent 制定的設定檔。
+## `[自用]` 對 OpenCode Build Agent 制定的設定檔。
 
 ### 檔案結構與說明
 
@@ -33,7 +33,7 @@
   "$schema": "https://opencode.ai/config.json",
 
   "instructions": [
-    "https://raw.githubusercontent.com/ss-vip/coding-agent/main/build-agent-plus.md"
+    "https://raw.githubusercontent.com/ss-vip/opencode-agent/refs/heads/main/build-agent-plus.md"
   ]
 }
 ```
