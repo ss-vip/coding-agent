@@ -5,7 +5,7 @@
 ### 檔案結構與說明
 
 * **`agent-plus.md` (核心 + 全部政策)**
-  * 涵蓋語言治理、衝突解決優先級、執行模式（Vibe/Production/Plan Mode）、行為護欄、領域語言、工具與 CLI 安全、DevOps、MCP 工具決策矩陣、完成定義 (DoD)。
+  * 涵蓋語言治理、衝突解決優先級、執行模式（Vibe/Production）、行為護欄、工具安全、DevOps、記憶系統整合、完成定義 (DoD)。
   * 自主迭代工作流 INTENT → EXECUTE → VERIFY → REFLECT（意圖→執行→驗證→反思）。
   * Agent 在執行任務時，會建立 `./temp/` 目錄隔離所有暫存檔案、腳本與測試產物（Artifacts）；執行期狀態（phase/attempt/resume hook）改由 plugged.in 記憶系統（`memory_observe`）跨 PC 同步，不再寫本機狀態檔。
   * 已建立 `.gitignore` 將 `./temp/` 與 `.codegraph/` 排除於版本控制之外。
@@ -17,8 +17,6 @@
 * **`SKILL` (常用 skills)**
   * [ponytail](https://github.com/DietrichGebert/ponytail)
   * [code-review](https://github.com/awesome-skills/code-review-skill)
-  * [aha-skills-finder](https://github.com/its-How/aha-skills-finder)
-  * [chrome-devtools-cli](https://github.com/aeroxy/chrome-devtools-cli)
   * [verification-before-completion](https://github.com/obra/superpowers/tree/main/skills/verification-before-completion)
 
 ---
