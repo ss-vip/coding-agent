@@ -7,17 +7,16 @@
 * **`agent-plus.md` (核心 + 全部政策)**
   * 涵蓋語言治理、衝突解決優先級、執行模式（Vibe/Production）、行為護欄、工具安全、DevOps、記憶系統整合、完成定義 (DoD)。
   * 自主迭代工作流 INTENT → EXECUTE → VERIFY → REFLECT（意圖→執行→驗證→反思）。
-  * Agent 在執行任務時，會建立 `./temp/` 目錄隔離所有暫存檔案、腳本與測試產物（Artifacts）；執行期狀態（phase/attempt/resume hook）改由 plugged.in 記憶系統（`memory_observe`）跨 PC 同步，不再寫本機狀態檔。
+  * Agent 在執行任務時，會建立 `./temp/` 目錄隔離所有暫存檔案、腳本與測試產物（Artifacts）；執行期狀態（phase/attempt/resume hook）改由 plugged.in 記憶系統（`memory_observe`）跨環境同步，不再寫本機狀態檔。
   * 已建立 `.gitignore` 將 `./temp/` 與 `.codegraph/` 排除於版本控制之外。
 
 * **`MCP Tools` (常用 MCP)**
   * [codegraph](https://github.com/colbymchenry/codegraph)
   * [plugged.in](https://plugged.in/)
+  * [huashu-chrome](https://github.com/alchaincyf/huashu-chrome)
 
 * **`SKILL` (常用 skills)**
-  * [ponytail](https://github.com/DietrichGebert/ponytail)
-  * [code-review](https://github.com/awesome-skills/code-review-skill)
-  * [verification-before-completion](https://github.com/obra/superpowers/tree/main/skills/verification-before-completion)
+  * [agent-use-browser](https://github.com/ss-vip/agent-use-browser)
 
 ---
 
@@ -34,11 +33,8 @@
         "openai": {
           "name": "openai",
           "limit": {
-            "context": 128000,
-            "output": 8000
-          },
-          "compaction": {
-            "threshold": 0.35
+            "context": 256000,
+            "output": 16000
           }
         }
       },
@@ -82,8 +78,10 @@
   },
   "compaction": {
     "auto": true,
-    "prune": true,
-    "reserved": 7000
+    "keep": {
+      "tokens": 8000
+    },
+    "buffer": 40000
   },
   "watcher": {
     "ignore": [
@@ -116,9 +114,6 @@
       ".codegraph/**"
     ]
   },
-  "plugin": [
-    "@dietrichgebert/ponytail"
-  ],
   "instructions": [
     "https://raw.githubusercontent.com/ss-vip/opencode-agent/refs/heads/main/agent-plus.md"
   ]
