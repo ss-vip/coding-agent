@@ -16,7 +16,7 @@
   * [huashu-chrome](https://github.com/alchaincyf/huashu-chrome)
 
 * **`SKILL` (常用 skills)**
-  * [agent-use-browser](https://github.com/ss-vip/agent-use-browser)
+  * [agent-use-browser](https://github.com/ss-vip/hermes-agent-soul/tree/main/skills/agent-use-browser)
 
 ---
 
@@ -33,8 +33,8 @@
         "openai": {
           "name": "openai",
           "limit": {
-            "context": 256000,
-            "output": 16000
+            "context": 128000,
+            "output": 8000
           }
         }
       },
@@ -52,6 +52,11 @@
     "codegraph": {
       "type": "local",
       "command": ["codegraph", "serve", "--mcp"],
+      "enabled": true
+    },
+    "huashu-chrome": {
+      "type": "local",
+      "command": ["npx", "-y", "huashu-chrome", "mcp"],
       "enabled": true
     },
     "PluggedinMCP": {
@@ -81,7 +86,7 @@
     "keep": {
       "tokens": 8000
     },
-    "buffer": 40000
+    "buffer": 20000
   },
   "watcher": {
     "ignore": [
