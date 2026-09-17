@@ -7,12 +7,12 @@
 * **`agent-plus.md` (核心 + 全部政策)**
   * 涵蓋語言治理、衝突解決優先級、執行模式（Vibe/Production）、行為護欄、工具安全、DevOps、記憶系統整合、完成定義 (DoD)。
   * 自主迭代工作流 INTENT → EXECUTE → VERIFY → REFLECT（意圖→執行→驗證→反思）。
-  * Agent 在執行任務時，會建立 `./temp/` 目錄隔離所有暫存檔案、腳本與測試產物（Artifacts）；執行期狀態（phase/attempt/resume hook）改由 plugged.in 記憶系統（`memory_observe`）跨環境同步，不再寫本機狀態檔。
+  * Agent 在執行任務時，會建立 `./temp/` 目錄隔離所有暫存檔案、腳本與測試產物（Artifacts）；執行期狀態由 Plugged.in 記憶系統（memory_search＋memory_observe）跨 PC/環境/Session 同步，知識問答走 ask_knowledge_base、全文直讀走 get_document，不寫本機狀態檔於專案內。
   * 已建立 `.gitignore` 將 `./temp/` 與 `.codegraph/` 排除於版本控制之外。
 
 * **`MCP Tools` (常用 MCP)**
   * [codegraph](https://github.com/colbymchenry/codegraph)
-  * [plugged.in](https://plugged.in/)
+  * [plugged.in](https://plugged.in)
   * [huashu-chrome](https://github.com/alchaincyf/huashu-chrome)
 
 * **`SKILL` (常用 skills)**
@@ -61,7 +61,7 @@
     },
     "PluggedinMCP": {
       "type": "local",
-      "command": ["npx", "-y", "@pluggedin/pluggedin-mcp-proxy"],
+      "command": ["npx", "-y", "@pluggedin/pluggedin-mcp-proxy@latest"],
       "environment": {
         "PLUGGEDIN_API_KEY": "your-key"
       },
