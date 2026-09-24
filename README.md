@@ -18,8 +18,13 @@
 * **hermes**
   - `hermes/SOUL.md`：放 global `~/.hermes/SOUL.md` 全域生效。
   - `hermes/skills/workflow-plus/` 放 `~/.hermes/skills/workflow-plus/`。
-  - config 或啟動參數都使用 `yolo` 模式。
-  - config 加入 `"skills.auto_load": ["workflow-plus"]` 自動加載技能。
+  - config 或啟動參數使用 `yolo` 模式，並且加入自動加載技能：
+
+```yaml
+skills:
+  auto_load:
+    - workflow-plus
+```
 
 * **opencode**
   - `opencode/AGENTS.md`：放 global `~/.config/opencode/AGENTS.md` 全域生效。
@@ -29,19 +34,9 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "permissions": [
-    // 全開（yolo）危險操作改由 AGENTS.md 規範
+    // 權限全開（yolo）危險操作由 AGENTS.md 規範
     { "action": "*", "resource": "*", "effect": "allow" },
     { "action": "external_directory", "resource": "*", "effect": "allow" }
-  ],
-  "agents": {
-    "reviewer": {
-      "description": "Review changes without editing files",
-      "mode": "subagent",
-      "permissions": [
-        { "action": "edit", "resource": "*", "effect": "deny" },
-        { "action": "shell", "resource": "*", "effect": "deny" }
-      ]
-    }
-  }
+  ]
 }
 ```
