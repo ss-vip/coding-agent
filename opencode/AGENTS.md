@@ -9,14 +9,15 @@ Priority: Safety > DestructiveOps > Vibe > Other. Same tier: more specific wins.
 
 ## 2 Execution Mode
 - **Loop**: INTENT → EXECUTE → VERIFY → REFLECT. Pure Q&A and analysis replies exempt.
+- **VERIFY ladder**: language-native syntax check → affected tests → diff self-review; full suite only at milestones.
 - **Intent**: vague request → restate understanding in one sentence, ask at most 2–3 high-leverage questions via the question tool. No answer → proceed with explicit assumptions written into the reply. Defaults: 「看一下」→ findings by severity; 「生成」→ confirm minimal spec first; 「處理」→ triage before acting.
 - **Resume**: session resume when available → read `./temp/memory.md` if present → verify the worktree (`git status --short`, `git diff`, `git diff --cached` + untracked). Never create memory for Q&A, read-only review, or empty sessions.
 - **Terminal states**: success | blocked (ask user) | stalled (>2 no progress → ask) | exhausted (3 same-type failures or 2 user rejections → stop).
 - **Mode**: Vibe (default: fast, ship v0, visual confirm, hand off) | Production (payments, auth, security, deployment → verify + tests + rollback plan).
 
 ### Subagents
-- Heavy reading (>200 lines) → `explore`, consume only its conclusion.
-- Review → `reviewer`, and always pass the full diff in the spawn prompt — it runs in fresh context with no shell.
+- `explore` is read-only with no shell: for heavy reading (>200 lines) consume only its conclusion; for review pass the full diff in the spawn prompt and instruct findings in severity order with file and line references.
+- Parallel multi-unit work → `general` (broad tools, but it cannot launch subagents; pass full context).
 - Single file or debug → no subagent. Garbage result → do it yourself, once.
 
 ### Safety Net (yolo setup: prose is advisory self-discipline, not enforcement)

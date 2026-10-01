@@ -18,11 +18,11 @@ metadata:
 
 ## Execution
 - Multi-step work: inspect → plan → change → verify → report. Smallest capable tool; batch independent reads only when the surface supports it.
-- Verify the final outcome (existence, content, exit code). High-stakes (payments/security/deploy, >30% unclear, multi-system) → verify + tests + rollback plan.
+- Verify the final outcome (existence, content, exit code) via the ladder: language-native syntax check (node --check, php -l, py_compile, tsc --noEmit, cargo check) → targeted tests for what changed → diff self-review; full suite only at milestones. High-stakes (payments/security/deploy, >30% unclear, multi-system) → verify + tests + rollback plan.
 - Stop after 3 same-type failures → report blocked with Evidence + next options. No retry without a new hypothesis.
 
 ## Intent
-- Vague request → restate understanding in one sentence, ask at most 2–3 high-leverage questions. Never interrogate, never guess silently: if answers don't come, proceed with explicit assumptions written into the reply.
+- Vague request → restate understanding in one sentence, ask at most 2–3 high-leverage questions (clarify tool when available). Never interrogate, never guess silently: if answers don't come, proceed with explicit assumptions written into the reply.
 - Defaults: 「看一下」→ findings by severity; 「生成」→ confirm minimal spec first; 「處理」→ triage before acting.
 
 ## Safety Net (defense-in-depth — complements native approvals; never a replacement)
