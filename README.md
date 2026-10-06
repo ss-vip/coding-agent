@@ -16,9 +16,9 @@
   - `freebuff/.AGENTS.md`：放 global `~/.AGENTS.md` 全域生效。
 
 * **hermes**
-  - `hermes/SOUL.md`：放 global `~/.hermes/SOUL.md` 全域生效。
-  - `hermes/skills/workflow-plus/` 放 `~/.hermes/skills/workflow-plus/`。
-  - config 或啟動參數使用 `yolo` 模式，並且加入自動加載技能：
+  - `hermes/SOUL.md`：放 `$HERMES_HOME/SOUL.md` 全域生效（POSIX 預設 `~/.hermes/`；Windows 原生預設 `%LOCALAPPDATA%\hermes\`，可用 `HERMES_HOME` 覆寫）。
+  - `hermes/skills/workflow-plus/` 放 `$HERMES_HOME/skills/workflow-plus/`。
+  - yolo 模式：以啟動參數 `--yolo` 或環境變數 `HERMES_YOLO_MODE=1` 啟用並加入自動加載技能：
 
 ```yaml
 skills:
@@ -28,7 +28,7 @@ skills:
 
 * **opencode**
   - `opencode/AGENTS.md`：放 global `~/.config/opencode/AGENTS.md` 全域生效。
-  - config 加入以下權限控制：
+  - `opencode.jsonc`（V2 格式，V1 向前相容讀取）加入以下權限控制：
 
 ```jsonc
 {
@@ -40,3 +40,12 @@ skills:
   ]
 }
 ```
+
+* **other**
+  - `other/AGENTS.md`：通用核心（Language、Personality、Intent defaults、Simplicity、Verify、Safety Net、Temp、Memory Protocol），供其他 agent 使用。
+  - 放置到各工具的全域指令檔位置，以各工具官方文件為準，例如：
+    - Claude Code：`~/.claude/CLAUDE.md`。
+    - Codex：`~/.codex/AGENTS.md`。
+    - Gemini CLI：`~/.gemini/GEMINI.md`。
+    - TraeCode：Settings → Rules 的 user_rules。
+    - ZCode：`~/.zcode/AGENTS.md`。
