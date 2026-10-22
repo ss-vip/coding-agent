@@ -1,6 +1,6 @@
 # Coding Agent Configuration
 
-## `[自用]` 對 Hermes-Agent/OpenCode V2/FreeBuff CLI 制定的設定檔。
+## `[自用]` 對 Hermes-Agent/OpenCode V2/FreeBuff CLI/Codex CLI 制定的設定檔。
 
 ### 功用說明
 
@@ -14,6 +14,22 @@
 
 * **freebuff**
   - `freebuff/.AGENTS.md`：放 global `~/.AGENTS.md` 全域生效。
+
+* **codex**
+  - `codex/AGENTS.md`：放 global `~/.codex/AGENTS.md` 全域生效。
+  - `codex/skills/workflow-plus/` 放 `~/.codex/skills/workflow-plus/`。
+  - config.toml（`~/.codex/config.toml`）建議：sandbox 是真執法層，yolo 保留真禁區：
+
+```toml
+approval_policy = "on-request"   # 只有溢出 sandbox 的例外才問
+sandbox_mode = "workspace-write"
+
+[features]
+child_agents_md = true           # subagent 才拿得到 AGENTS.md
+
+[sandbox_workspace_write]
+network_access = true            # 裝套件需要；介意資料外流就關、用時再開
+```
 
 * **hermes**
   - `hermes/SOUL.md`：放 `$HERMES_HOME/SOUL.md` 全域生效（POSIX 預設 `~/.hermes/`；Windows 原生預設 `%LOCALAPPDATA%\hermes\`，可用 `HERMES_HOME` 覆寫）。

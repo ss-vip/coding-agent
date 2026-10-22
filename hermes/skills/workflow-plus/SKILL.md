@@ -1,6 +1,6 @@
 ---
 name: workflow-plus
-description: Code review, git, tests, deploys — target-verified guardrails and cross-agent memory handoff.
+description: Use when claiming work complete, before committing or PRs, or for code review, git, tests, deploys, multi-step or high-stakes work — target-verified guardrails and cross-agent memory handoff.
 metadata:
   hermes:
     tags: [workflow, safety, git, review, memory]
@@ -18,6 +18,7 @@ metadata:
 
 ## Execution
 - Multi-step work: inspect → plan → change → verify → report. Smallest capable tool; batch independent reads only when the surface supports it.
+- Multi-file or boundary-crossing task → checkbox plan in temp/plan-<task>.md before acting; resume from it when present.
 - Verify the final outcome (existence, content, exit code) via the ladder: language-native syntax check (node --check, php -l, py_compile, tsc --noEmit, cargo check) → targeted tests for what changed → diff self-review; full suite only at milestones. High-stakes (payments/security/deploy, >30% unclear, multi-system) → verify + tests + rollback plan.
 - Stop after 3 same-type failures → report blocked with Evidence + next options. No retry without a new hypothesis.
 
@@ -56,6 +57,7 @@ metadata:
 
 ## Done — What / Why / Evidence
 - Request addressed or blocked with reason; no unreviewed destructive change; secrets redacted.
+- Evidence before claims: fresh verification output for every success statement; a subagent's "success" is proven by its diff, not its report.
 - memory.md touched only at a real task boundary.
 
 ## Pitfalls
