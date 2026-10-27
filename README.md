@@ -1,67 +1,49 @@
 # Coding Agent Configuration
 
-## `[自用]` 對 Hermes-Agent/OpenCode V2/FreeBuff CLI/Codex CLI 制定的設定檔。
+**自用** Codex、OpenCode V2、FreeBuff、Hermes prompt 設定；以簡短規則統一工作方式，供不同工具／模型使用。
 
-### 功用說明
+## 功能
 
-* **核心及政策**
-  - 人格、語言及行為規範、執行模式（Vibe/Production）、工具安全、DevOps、完成定義 (DoD)。
-  - 自主迭代工作流 INTENT → EXECUTE → VERIFY → REFLECT（意圖→執行→驗證→反思）。
-  - 使用 `./temp/` 目錄隔離所有暫存檔案、腳本、測試產物，同時確保寫入專案根目錄 `.gitignore`。
-  - 進度記憶使用 `./temp/memory.md`（平行任務用 `temp/memory/<task-id>.md`）給各 agent 閱讀接手。
+- **語言與風格**：繁體中文、台灣用語；直接說明判斷與取捨，不假裝確定。
+- **開發流程**：釐清目標 → 執行 → 驗證 → 回報；優先重用、最小修改與相關測試。
+- **安全界線**：操作前確認目標與授權、保護秘密；依工具原生權限執法。
+- **任務接續**：需要續作時，以 temp/ 內的簡短 Markdown 筆記交接；接手先核對實際程式狀態。
 
-### 載入方式（請依照實際環境路徑處理）
+## 安裝
 
-* **freebuff**
-  - `freebuff/.AGENTS.md`：放 global `~/.AGENTS.md` 全域生效。
+| 來源 | 目的地 |
+| --- | --- |
+| `codex/AGENTS.md` | `~/.codex/AGENTS.md` |
+| `codex/skills/workflow-plus/` | `~/.agents/skills/workflow-plus/` |
+| `opencode/AGENTS.md` | `~/.config/opencode/AGENTS.md` |
+| `freebuff/.AGENTS.md` | `~/.AGENTS.md` |
+| `hermes/SOUL.md` | `$HERMES_HOME/SOUL.md` |
+| `hermes/skills/workflow-plus/` | `$HERMES_HOME/skills/workflow-plus/` |
 
-* **codex**
-  - `codex/AGENTS.md`：放 global `~/.codex/AGENTS.md` 全域生效。
-  - `codex/skills/workflow-plus/` 放 `~/.codex/skills/workflow-plus/`。
-  - config.toml（`~/.codex/config.toml`）建議：sandbox 是真執法層，yolo 保留真禁區：
-
-```toml
-approval_policy = "on-request"   # 只有溢出 sandbox 的例外才問
-sandbox_mode = "workspace-write"
-
-[features]
-child_agents_md = true           # subagent 才拿得到 AGENTS.md
-
-[sandbox_workspace_write]
-network_access = true            # 裝套件需要；介意資料外流就關、用時再開
-```
-
-* **hermes**
-  - `hermes/SOUL.md`：放 `$HERMES_HOME/SOUL.md` 全域生效（POSIX 預設 `~/.hermes/`；Windows 原生預設 `%LOCALAPPDATA%\hermes\`，可用 `HERMES_HOME` 覆寫）。
-  - `hermes/skills/workflow-plus/` 放 `$HERMES_HOME/skills/workflow-plus/`。
-  - yolo 模式：以啟動參數 `--yolo` 或環境變數 `HERMES_YOLO_MODE=1` 啟用並加入自動加載技能：
+- Codex 請成對安裝；既有 host 若使用 `~/.codex/skills/`，保留確認可載入的路徑，避免同名雙份。
+- `other/AGENTS.md` 供其他工具使用，目的地依該工具規定。
+- Hermes 的 HERMES_HOME 使用實際資料目錄；在 config.yaml 啟用 skill：
 
 ```yaml
 skills:
-  auto_load:
-    - workflow-plus
+  auto_load: [workflow-plus]
 ```
 
-* **opencode**
-  - `opencode/AGENTS.md`：放 global `~/.config/opencode/AGENTS.md` 全域生效。
-  - `opencode.jsonc`（V2 格式，V1 向前相容讀取）加入以下權限控制：
+## 記憶
 
-```jsonc
-{
-  "$schema": "https://opencode.ai/config.json",
-  "permissions": [
-    // yolo 全開：只覆寫 base policy 的兩處 ask，其餘沿用預設 allow；危險操作只靠 AGENTS.md 自律
-    { "action": "read", "resource": "*.env*", "effect": "allow" },
-    { "action": "external_directory", "resource": "*", "effect": "allow" }
-  ]
-}
+生成的記憶、計畫與心得草稿放 Git-ignored temp/；正式文件只在任務授權時更新。原生記憶維持工具自己的位置。
+
+只有需要續作／換工具時才寫 `temp/memory/<task-id>.md`，內容自由、簡短，例如：
+
+```markdown
+# Task
+修正登入導向
+# State
+repo/branch、目前進度與阻塞
+# Checks
+測試命令及結果；未測就明說
+# Next
+下一個具體步驟
 ```
 
-* **other**
-  - `other/AGENTS.md`：通用核心（Language、Personality、Intent defaults、Simplicity、Verify、Safety Net、Temp、Memory Protocol），供其他 agent 使用。
-  - 放置到各工具的全域指令檔位置，以各工具官方文件為準，例如：
-    - Claude Code：`~/.claude/CLAUDE.md`。
-    - Codex：`~/.codex/AGENTS.md`。
-    - Gemini CLI：`~/.gemini/GEMINI.md`。
-    - TraeCode：Settings → Rules 的 user_rules。
-    - ZCode：`~/.zcode/AGENTS.md`。
+清理時保留未完成任務；temp/ 不會自動同步或備份。
