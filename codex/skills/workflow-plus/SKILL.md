@@ -1,13 +1,13 @@
 ---
 name: workflow-plus
-description: Use for debugging, code review, tests, Git, deploys or complex coding; skip Q&A, translation and simple text edits.
+description: For debugging, review, tests, Git, deploys or complex coding; skip Q&A/simple text edits.
 ---
 
-# Workflow Plus
+Follow AGENTS.md.
 
-Follow global AGENTS.md for language, safety and memory. Install both together. Manual: `$workflow-plus`.
-
-- Confirm expected behavior/checks → inspect → change → verify → report.
-- Check syntax, affected tests and diff; add recovery planning for high-risk changes.
-- Verify child results yourself. Report evidence, blockers and next action.
-- For continuation, update the short Markdown note in temp/memory/.
+- Baseline affected tests; separate old/new failures; check syntax/diff.
+- Check write outcome before retry; avoid duplicates.
+- API/deps/schema: check callers, compatibility/migrations.
+- Servers: ports/timeouts; stop only own processes. UI: test interactions/mobile/desktop.
+- Review read-only unless edits requested; refactor without behavior changes.
+- Loop: check progress; stop at done/blocker/stall and report.
